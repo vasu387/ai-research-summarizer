@@ -7,7 +7,6 @@ load_dotenv()
 OMNIROUTE_URL = "http://localhost:20128/v1/chat/completions"
 OMNIROUTE_KEY = os.getenv("OMNIROUTE_KEY")
 
-# Replace this with the exact Combo name you gave your setup in OmniRoute
 COMBO_MODEL_NAME = "gemini-fallback"
 
 def ask(question):
@@ -25,7 +24,7 @@ def ask(question):
         response = requests.post(OMNIROUTE_URL, headers=headers, json=payload, timeout=30)
         response.raise_for_status()
 
-        # Check which provider OmniRoute actually routed this request to
+    
         routing_decision = response.headers.get("X-OmniRoute-Decision", "No routing header found")
         print(f"\n[OmniRoute Route]: {routing_decision}")
 
