@@ -16,7 +16,7 @@ st.set_page_config(
     initial_sidebar_state="collapsed",
 )
 
-# Custom Design System: Clean Light Aesthetics
+
 st.markdown("""
 <style>
     /* 1. Global Page Background & Text */
@@ -127,7 +127,7 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
-# Top Left Brand
+
 st.markdown('<div class="top-left-brand">✨ AI Research Summarizer</div>', unsafe_allow_html=True)
 
 def get_text_from_url(url: str) -> str:
@@ -189,14 +189,14 @@ if not st.session_state["chat_history"]:
     </div>
     """, unsafe_allow_html=True)
 
-# Render Chat History
+
 for message in st.session_state["chat_history"]:
     with st.chat_message(message["role"]):
         st.markdown(message["content"])
         if "route" in message:
             st.caption(f"⚡ *Engine: `{message['route']}`*")
 
-# Mode Selection Bar
+
 mode = st.radio(
     "Mode",
     options=["✍️ Text", "🌐 Web URL", "📄 PDF Document"],
@@ -230,7 +230,7 @@ elif mode == "🌐 Web URL":
             to_process_text = get_text_from_url(clean_url)
             source_tag = f"URL ({clean_url})"
 
-else: # Text Mode
+else: 
     prompt_val = st.chat_input("Paste text or ask a question and press Enter...")
     if prompt_val:
         raw_text = prompt_val.strip()
@@ -240,7 +240,7 @@ else: # Text Mode
         to_process_text = raw_text
         source_tag = "Direct Text"
 
-# Execute Agent Summarization
+
 if to_process_text:
     with st.chat_message("assistant"):
         with st.spinner("Analyzing and routing through OmniRoute cascade..."):
